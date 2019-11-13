@@ -1,13 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Helmet } from 'react-helmet';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { ThemeProvider } from '@material-ui/core/styles';
-import theme from '../../src/theme';
+import React, { useEffect } from "react";
+import PropTypes from "prop-types";
+import { Helmet } from "react-helmet";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import { ThemeProvider } from "@material-ui/core/styles";
+import defaultTheme from "../../src/theme";
+import ThemeSwitchContext from "../../src/context/ThemeSwitchContext";
 
 export default function TopLayout(props) {
+  const [theme, setTheme] = React.useState(defaultTheme);
   return (
-    <React.Fragment>
+    <ThemeSwitchContext.Provider value={{ setTheme }}>
       <Helmet>
         <meta
           name="viewport"
@@ -23,10 +25,10 @@ export default function TopLayout(props) {
         <CssBaseline />
         {props.children}
       </ThemeProvider>
-    </React.Fragment>
+    </ThemeSwitchContext.Provider>
   );
 }
 
 TopLayout.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.node
 };
