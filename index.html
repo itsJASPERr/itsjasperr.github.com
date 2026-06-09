@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comunidad Kamëntsá | Valle de Sibundoy</title>
+    <style>
+        /* Color Palette & Base Styles */
+        :root {
+            --primary-color: #2c4c3b; /* Deep forest green */
+            --accent-color: #d35400; /* Warm terracotta/woven dye */
+            --bg-light: #f9f6f0; /* Natural fiber off-white */
+            --text-dark: #333333;
+            --text-light: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        header {
+            background-color: var(--primary-color);
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        nav ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        .btn-donate {
+            background-color: var(--accent-color);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        /* Hero Section */
+        #hero {
+            height: 100vh;
+            background: linear-gradient(rgba(44, 76, 59, 0.7), rgba(44, 76, 59, 0.7)), url('https://images.unsplash.com/photo-1518182170546-076616fdcbfa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--text-light);
+            padding: 0 20px;
+            margin-top: 60px;
+        }
+
+        #hero h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        #hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+
+        .btn-main {
+            background-color: var(--bg-light);
+            color: var(--primary-color);
+            padding: 10px 24px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .btn-main:hover {
+            background-color: var(--accent-color);
+            color: var(--text-light);
+        }
+
+        /* General Section Styling */
+        section {
+            padding: 5rem 10%;
+        }
+
+        h2.section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 3rem;
+        }
+
+        /* Our Story */
+        #story {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .story-text {
+            flex: 1;
+        }
+
+        .story-image {
+            flex: 1;
+            background-color: #ddd;
+            height: 300px;
+            border-radius: 8px;
+            background: url('https://images.unsplash.com/photo-1604028297491-9e7fbcff2d4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80') center/cover;
+        }
+
+        /* Artisan Shop */
+        #shop {
+            background-color: #fff;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background-color: var(--bg-light);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card h3 {
+            margin: 1rem 0 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .card p {
+            padding: 0 1rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .card .price {
+            font-weight: bold;
+            color: var(--accent-color);
+            margin: 1rem 0;
+            display: block;
+        }
+
+        .btn-buy {
+            display: block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .btn-buy:hover {
+            background-color: var(--accent-color);
+        }
+
+        /* Cultural Center Project */
+        #project {
+            text-align: center;
+        }
+
+        .progress-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            background-color: #ddd;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 30px;
+            background-color: var(--accent-color);
+            width: 35%; /* Adjust this percentage to show actual progress */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .goal-text {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            text-align: center;
+            padding: 2rem 10%;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            #story {
+                flex-direction: column;
+            }
+            nav ul {
+                display: none; /* In a full build, this would be a hamburger menu */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header>
+        <h1>Kamëntsá</h1>
+        <nav>
+            <ul>
+                <li><a href="#hero">Inicio</a></li>
+                <li><a href="#story">Nuestra Historia</a></li>
+                <li><a href="#shop">Tienda Artesanal</a></li>
+                <li><a href="#project">Centro Cultural</a></li>
+                <li><a href="#project" class="btn-donate">Donar</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <h2>Tejiendo Nuestro Futuro</h2>
+        <p>Descubre la sabiduría ancestral del pueblo Kamëntsá del Valle de Sibundoy. Apoya a nuestra comunidad y ayúdanos a construir un hogar duradero para nuestra cultura.</p>
+        <a href="#project" class="btn-main">Apoya el Centro Cultural</a>
+    </section>
+
+    <!-- Our Story Section -->
+    <section id="story">
+        <div class="story-image"></div>
+        <div class="story-text">
+            <h2 class="section-title" style="text-align: left;">Nuestro Territorio Vivo</h2>
+            <p>Durante siglos, el pueblo Kamëntsá ha salvaguardado el Valle de Sibundoy, guiado por los pilares del Tiempo, la Belleza y el Espíritu. Nuestro idioma, nuestros rituales como el <em>Bëtsknaté</em> (Carnaval del Perdón), y nuestra conexión con la tierra definen quiénes somos.</p>
+            <br>
+            <p>Hoy, estamos conectando nuestras tradiciones ancestrales con el mundo moderno. Al compartir nuestras historias y artes, te invitamos a caminar junto a nosotros para preservar una cosmovisión arraigada en la armonía y el respeto mutuo.</p>
+        </div>
+    </section>
+
+    <!-- Artisan Shop Section -->
+    <section id="shop">
+        <h2 class="section-title">Artesanía Tradicional</h2>
+        <div class="grid">
+            <!-- Product 1 -->
+            <div class="card">
+                <!-- Using Unsplash placeholders for textiles -->
+                <img src="https://images.unsplash.com/photo-1580828343064-fde4cad202d0?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Faja Tradicional">
+                <h3>Tšombiachs (Faja Tejida)</h3>
+                <p>Tejida a mano en telares de cintura tradicionales. Los símbolos representan el vientre, la familia y los caminos de nuestros ancestros.</p>
+                <span class="price">$45.00</span>
+                <a href="#" class="btn-buy" onclick="alert('Esto se conectará a tu pasarela de pago (ej. Shopify/Stripe).')">Comprar y Apoyar</a>
+            </div>
+            <!-- Product 2 -->
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1618331835717-801e976710b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Máscara Tallada">
+                <h3>Máscara Ceremonial de Madera</h3>
+                <p>Tallada en madera de sauce por nuestros mayores. Estas máscaras llevan expresiones utilizadas durante el Día del Perdón.</p>
+                <span class="price">$120.00</span>
+                <a href="#" class="btn-buy" onclick="alert('Esto se conectará a tu pasarela de pago (ej. Shopify/Stripe).')">Comprar y Apoyar</a>
+            </div>
+            <!-- Product 3 -->
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1589802829985-817e51171b92?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Collar de Chaquiras">
+                <h3>Chaquiras (Arte en Mostacilla)</h3>
+                <p>Intrincado trabajo en cuentas que muestra geometría sagrada. Se usa para protección y conexión con el reino espiritual.</p>
+                <span class="price">$65.00</span>
+                <a href="#" class="btn-buy" onclick="alert('Esto se conectará a tu pasarela de pago (ej. Shopify/Stripe).')">Comprar y Apoyar</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cultural Center Project Section -->
+    <section id="project">
+        <h2 class="section-title">El Proyecto del Centro Cultural</h2>
+        <p style="max-width: 800px; margin: 0 auto 2rem;">Nuestro sueño es construir un espacio físico en el corazón del Valle de Sibundoy. Este centro servirá como una escuela de artes tradicionales para nuestros jóvenes, una biblioteca de nuestra historia no escrita y un lugar acogedor para que los visitantes aprendan nuestras costumbres con respeto.</p>
+        
+        <div class="goal-text">Meta: $50,000 USD para comenzar los trabajos de cimientos</div>
+        
+        <div class="progress-container">
+            <div class="progress-bar">35% Financiado</div>
+        </div>
+
+        <p style="margin-bottom: 2rem;">El 100% de las donaciones va directamente al fondo de construcción del Cabildo Indígena Kamëntsá.</p>
+        <button class="btn-main" style="border: none; cursor: pointer; padding: 15px 30px; font-size: 1.2rem;" onclick="alert('Esto enlazará a tu campaña de Donorbox o crowdfunding.')">Donar Ahora</button>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <h2>Territorio Digital Kamëntsá</h2>
+        <p style="margin: 1rem 0;">Valle de Sibundoy, Putumayo, Colombia</p>
+        <p>&copy; 2026 Comunidad Kamëntsá. Todos los derechos y propiedad cultural reservados.</p>
+    </footer>
+
+    <!-- Smooth Scrolling Script -->
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
